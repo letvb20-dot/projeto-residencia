@@ -1,6 +1,6 @@
 # MediConnect
 
-MediConnect e um prototipo academico de front-end para gestao clinica, desenvolvido como parte de um trabalho de Residencia I. O projeto tem como foco demonstrar a estrutura navegavel de uma aplicacao medica, incluindo modulos de pacientes, agenda, prontuario, laudos, comunicacao, financeiro, relatorios e configuracoes.
+MediConnect e um prototipo academico de front-end para gestao clinica, desenvolvido como parte de um trabalho de Residencia de Software I. O projeto tem como foco demonstrar a estrutura navegavel de uma aplicacao medica, incluindo modulos de pacientes, agenda, prontuario, laudos, comunicacao, financeiro, relatorios e configuracoes.
 
 O sistema ainda nao possui backend real. Todos os dados, fluxos de autenticacao, persistencia e integracoes externas estao simulados no proprio front-end. A implementacao atual prioriza organizacao de rotas, navegacao, estrutura visual e separacao inicial da camada de dados, preparando o projeto para uma futura integracao com APIs reais.
 
