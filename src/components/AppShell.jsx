@@ -14,7 +14,6 @@ const navItems = [
     icon: 'message',
     activePaths: ['/camunicacao', '/comunicacao', '/mensagens'],
   },
-  { href: '/financeiro', label: 'Financeiro', icon: 'dollar' },
   { href: '/relatorios', label: 'Relatórios', icon: 'chart' },
   { href: '/configuracoes', label: 'Configurações', icon: 'settings', activePaths: ['/configuracoes', '/config'] },
 ]
@@ -31,7 +30,6 @@ const titles = {
   '/camunicacao': 'Comunicação',
   '/comunicacao': 'Comunicação',
   '/mensagens': 'Comunicação',
-  '/financeiro': 'Financeiro',
   '/relatorios': 'Relatórios',
   '/profissionais': 'Profissionais',
   '/perfil': 'Perfil',

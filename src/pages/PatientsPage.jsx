@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { patientRepository } from '../repositories/patientRepository.js'
 const ITEMS_PER_PAGE = 25
@@ -15,7 +15,9 @@ const patientTabs = [
 ]
 
 export function PatientsPage({ navigate }) {
-  const [rows, setRows] = useState(() => buildPatientRows())
+  const [rows, setRows] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [view, setView] = useState('list')
   const [editingId, setEditingId] = useState(null)
   const [search, setSearch] = useState('')
@@ -30,6 +32,13 @@ export function PatientsPage({ navigate }) {
   const [advancedOpen, setAdvancedOpen] = useState(false)
   const [openMenuId, setOpenMenuId] = useState(null)
   const [page, setPage] = useState(1)
+
+  useEffect(() => {
+    buildPatientRows()
+      .then((data) => setRows(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [])
 
   const editingPatient = rows.find((patient) => patient.id === editingId)
   const insuranceOptions = useMemo(() => [...new Set(rows.map((patient) => patient.insurance).filter(Boolean))], [rows])
@@ -141,6 +150,14 @@ export function PatientsPage({ navigate }) {
     }
 
     openForm(patient.id)
+  }
+
+  if (loading) {
+    return <p className="p-8 text-center text-[#a3a3a3]">Carregando pacientes...</p>
+  }
+
+  if (error) {
+    return <p className="p-8 text-center text-red-400">Erro ao carregar pacientes: {error}</p>
   }
 
   if (view === 'form') {
@@ -1179,7 +1196,7 @@ function PatientIcon({ className = 'size-4', name }) {
   )
 }
 
-function buildPatientRows() {
+async function buildPatientRows() {
   return patientRepository.getDirectoryRows()
 }
 

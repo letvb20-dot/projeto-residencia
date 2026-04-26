@@ -4,7 +4,6 @@ import './App.css'
 import { AppShell } from './components/AppShell.jsx'
 import { AgendaPage } from './pages/AgendaPage.jsx'
 import { AnalyticsPage } from './pages/AnalyticsPage.jsx'
-import { FinancialPage } from './pages/FinancialPage.jsx'
 import { ForgotPasswordPage, LoginPage, RegisterPage } from './pages/AuthPages.jsx'
 import { HomePage } from './pages/HomePage.jsx'
 import { MedicalRecordsPage } from './pages/MedicalRecordsPage.jsx'
@@ -153,14 +152,6 @@ function resolveRoute(pathname, navigate) {
     return {
       element: <AnalyticsPage />,
       title: 'Relatórios',
-      withShell: true,
-    }
-  }
-
-  if (pathname === '/financeiro') {
-    return {
-      element: <FinancialPage />,
-      title: 'Financeiro',
       withShell: true,
     }
   }

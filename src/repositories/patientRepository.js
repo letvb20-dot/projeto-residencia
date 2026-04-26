@@ -1,41 +1,38 @@
-import { patients as mockPatients } from '../data/mockData.js'
+const BASE_URL = 'https://yuanqfswhberkoevtmfr.supabase.co/rest/v1'
+const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl1YW5xZnN3aGJlcmtvZXZ0bWZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5NTQzNjksImV4cCI6MjA3MDUzMDM2OX0.g8Fm4XAvtX46zifBZnYVH4tVuQkqUH6Ia9CXQj4DztQ'
 
-const patientCities = ['Recife', 'Olinda', 'Jaboatao', 'Recife']
-const patientBirthdays = ['07/04', '18/04', '02/05', '24/04']
-const patientLastVisitIso = ['2026-03-31', '2026-04-02', null, '2026-04-05']
-
-export const patientRepository = {
-  getAll() {
-    return mockPatients
-  },
-
-  getById(patientId) {
-    return mockPatients.find((patient) => patient.id === patientId) || null
-  },
-
-  getDirectoryRows() {
-    return mockPatients.map((patient, index) => {
-      const cpf = patient.document?.replace('CPF ', '') || ''
-
-      return {
-        ...patient,
-        birthday: patientBirthdays[index] || '07/04',
-        city: patientCities[index] || 'Recife',
-        cpf,
-        detailId: patient.id,
-        insurance: normalizeInsurance(patient.plan),
-        lastVisitIso: patientLastVisitIso[index] || null,
-        state: 'PE',
-        vip: index === 0,
-      }
-    })
-  },
+const headers = {
+  'apikey': API_KEY,
+  'Authorization': `Bearer ${API_KEY}`,
+  'Content-Type': 'application/json',
 }
 
-function normalizeInsurance(plan) {
-  if (plan === 'Bradesco Saude') {
-    return 'Bradesco Saude'
-  }
+export const patientRepository = {
+  async getAll() {
+    const response = await fetch(`${BASE_URL}/patients?select=*`, { headers })
+    if (!response.ok) throw new Error('Erro ao buscar pacientes')
+    return response.json()
+  },
 
-  return plan || 'Particular'
+  async getById(patientId) {
+    const patients = await this.getAll()
+    return patients.find((p) => String(p.id) === String(patientId)) || null
+  },
+
+  async getDirectoryRows() {
+    const patients = await this.getAll()
+    return patients.map((patient) => ({
+      ...patient,
+      name: patient.full_name,
+      phone: patient.phone_mobile,
+      detailId: patient.id,
+      insurance: 'Particular',
+      city: 'Recife',
+      state: 'PE',
+      vip: false,
+      lastVisitIso: null,
+      lastVisit: 'Ainda nao houve atendimento',
+      nextVisit: 'Nenhum atendimento agendado',
+    }))
+  },
 }

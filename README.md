@@ -1,6 +1,6 @@
 # MediConnect
 
-MediConnect e um prototipo academico de front-end para gestao clinica, desenvolvido como parte de um trabalho de Residencia de Software I. O projeto tem como foco demonstrar a estrutura navegavel de uma aplicacao medica, incluindo modulos de pacientes, agenda, prontuario, laudos, comunicacao, financeiro, relatorios e configuracoes.
+MediConnect e um prototipo academico de front-end para gestao clinica, desenvolvido como parte de um trabalho de Residencia de Software I. O projeto tem como foco demonstrar a estrutura navegavel de uma aplicacao medica, incluindo modulos de pacientes, agenda, prontuario, laudos, comunicacao, relatorios e configuracoes.
 
 O sistema ainda nao possui backend real. Todos os dados, fluxos de autenticacao, persistencia e integracoes externas estao simulados no proprio front-end. A implementacao atual prioriza organizacao de rotas, navegacao, estrutura visual e separacao inicial da camada de dados, preparando o projeto para uma futura integracao com APIs reais.
 
@@ -27,7 +27,6 @@ O objetivo do projeto e apresentar uma solucao de apoio a operacao de uma clinic
 - registro de prontuario medico;
 - emissao e gestao de laudos;
 - comunicacao com pacientes por canais simulados;
-- acompanhamento financeiro;
 - indicadores e relatorios de gestao;
 - configuracoes gerais do sistema.
 
@@ -92,7 +91,6 @@ Repositories existentes:
 - `professionalRepository`
 - `homeRepository`
 - `analyticsRepository`
-- `financialRepository`
 - `medicalRecordRepository`
 - `communicationRepository`
 - `profileRepository`
@@ -121,7 +119,6 @@ No estado atual, esses repositories ainda retornam dados locais e sincronamente.
 | `/mensagens` | Alias de comunicacao |
 | `/consultas` | Fila e acompanhamento de consultas |
 | `/profissionais` | Equipe e disponibilidade |
-| `/financeiro` | Controle financeiro mockado |
 | `/relatorios` | Indicadores e analytics |
 | `/perfil` | Perfil local do usuario |
 | `/configuracoes` | Configuracoes gerais |
@@ -149,10 +146,6 @@ Inclui listagem de laudos, filtros, templates, editor local, historico de versoe
 
 Inclui historico de mensagens, filtros por canal, templates, campanhas e envio local de mensagens. Nao ha integracao real com WhatsApp, e-mail ou SMS.
 
-### Financeiro
-
-Inclui resumo financeiro, graficos mockados, formas de pagamento e tabela de lancamentos. Nao ha cobranca real nem integracao com gateway de pagamento.
-
 ### Relatorios e analytics
 
 Inclui indicadores executivos, graficos de absenteismo, consultas por periodo, faturamento, convenios, top pacientes e performance por medico.
@@ -169,7 +162,6 @@ Inclui configuracoes visuais e operacionais simuladas, dados de perfil do usuari
 - prontuarios;
 - laudos e versoes;
 - comunicacoes;
-- financeiro;
 - relatorios;
 - configuracoes;
 - perfil do usuario;
@@ -187,7 +179,7 @@ Inclui configuracoes visuais e operacionais simuladas, dados de perfil do usuari
 - Nao existe controle real de permissao de usuario.
 - O projeto ainda nao possui validacoes clinicas ou juridicas suficientes para uso real.
 - Algumas telas foram refinadas por consistencia visual quando nao havia fonte especifica completa do Figma.
-- O conteudo clinico e financeiro e ficticio, usado apenas para demonstracao.
+- O conteudo clinico e ficticio, usado apenas para demonstracao.
 
 ## Proximos passos sugeridos
 
